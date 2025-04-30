@@ -1,9 +1,8 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="static/img/roomquestic.png" alt="Logo CReSTIC" width="140"  height="auto" />
   <br/>
-  <h3><b>Site de réservation - CReSTIC</b></h3>
+  <h3><b>Site de réservation - EMSI</b></h3>
 </div>
 
 # 📗 Sommaire
