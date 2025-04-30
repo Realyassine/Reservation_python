@@ -1,0 +1,887 @@
+/*
+    Projet : RoomQueSTIC
+    Description : Site de réservation - Python (Django)
+    Version : 1.0
+    Auteurs :
+        - Nino SAUVAGEOT
+        - Léo BERNARD
+        - Tom SIKORA
+*/
+
+/*------------------- Couleurs -------------------*/
+:root {
+    /* Couleurs principales */
+    --color-light-blue: #0275d8;  /* Couleur 1  : Bleu clair  */
+    --color-blue: #036cc8;        /* Couleur 2  : Bleu        */
+    --color-dark-blue: #025dad;   /* Couleur 3  : Bleu foncé  */
+    --color-light-grey: #9e9e9e;  /* Couleur 4  : Gris clair  */
+    --color-grey: #515659;        /* Couleur 5  : Gris        */
+    --color-dark-grey: #373a3c;   /* Couleur 6  : Gris foncé  */
+    --color-light-white: #ffffff; /* Couleur 7  : Blanc clair */
+    --color-white: #ececec;       /* Couleur 8  : Blanc       */
+    --color-dark-white: #dddddd;  /* Couleur 9  : Blanc foncé */
+    --color-light-red: #ff4141;   /* Couleur 10 : Rouge clair */
+    --color-red: #ff1616;         /* Couleur 11 : Rouge       */
+    --color-dark-red: #bf1a1a;    /* Couleur 12 : Rouge foncé */
+
+    /* Dégradé */
+    --color-gradient: linear-gradient(0.25turn, #264085, #1D5895, #1079AA, #00A9CD);
+
+    /* Couleurs des différents labos */
+    --color-crestic: #00A9CD;
+    --color-dark-crestic: #019cbf;
+    --color-labi: #6d90fd;
+    --color-dark-labi: #5e84ff;
+    --color-liciis: #aa00fd;
+    --color-dark-liciis: #a200f3;
+    --color-autre: #f4a352;
+    --color-dark-autre: #e19545;
+}
+
+/*------------------ CSS Global ------------------*/
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-white) !important;
+}
+
+img {
+    pointer-events: none;
+    user-select: none;
+}
+
+p {
+    margin: 0 !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.material-icons {
+    font-family: 'Material Icons', serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*----------------- Page de base -----------------*/
+/* Barre de navigation */
+nav.navbar {
+    background: var(--color-gradient);
+}
+
+/* Logo */
+a.navbar-brand > img {
+    height: 45px;
+    margin-top: 2px;
+}
+
+/* Container de la barre */
+div.navbar-container {
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+li.nav-item > span.nav-line {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    div.navbar-container {
+        flex-direction: row;
+        align-content: normal;
+    }
+
+    li.nav-item > span.nav-line {
+        display: block;
+    }
+}
+
+span.nav-line {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40%;
+    margin: 10px 5px 0 5px;
+    border: 1px solid var(--color-light-white);
+}
+
+ul.navbar-nav > li.nav-item > a {
+    margin: 0 3px;
+    font-family: "Lexend", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--color-light-white);
+    background: none !important;
+}
+
+ul.navbar-nav > li.nav-item > a:hover {
+    color: var(--color-white);
+}
+
+ul.navbar-nav > li.nav-item > a:active {
+    color: var(--color-dark-white);
+}
+
+/* Menu dropdown */
+ul.dropdown-menu.show {
+    position: absolute;
+    margin: -5px 0 0 -5px;
+}
+
+ul.dropdown-menu.show > li > a {
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    color: var(--color-grey);
+}
+
+ul.dropdown-menu.show > li > a:hover {
+    background-color: var(--color-white) !important;
+}
+
+ul.dropdown-menu.show > li > a:active {
+    background-color: var(--color-dark-white) !important;
+}
+
+ul.navbar-nav > li.nav-item.dropdown > a {
+    background: none !important;
+}
+
+ul.navbar-nav > li.nav-item > a.nav-link.show {
+    color: var(--color-dark-white) !important;
+}
+
+/* Bloc expansible */
+div.flex-space-bloc {
+    flex: 1;
+}
+
+/* Footer */
+footer {
+    padding: 5px 0;
+    background: var(--color-gradient);
+}
+
+footer > div > a.img-link {
+    display: block;
+    width: 109px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+footer > div > a.img-link > img {
+    height: 100%;
+}
+
+a.crestic-link {
+    text-decoration: none;
+    color: var(--color-light-white);
+}
+
+a.crestic-link:hover {
+    text-decoration: underline !important;
+    color: var(--color-white);
+}
+
+a.crestic-link:active {
+    color: var(--color-dark-white);
+}
+
+footer p {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0 !important;
+    font-family: "Outfit", sans-serif;
+    color: var(--color-light-white);
+}
+
+footer > div > p:nth-child(2) {
+    margin-top: 20px !important;
+}
+
+footer > div > p:last-child {
+    font-weight: 600;
+}
+
+/*---------------- Code réutilisé ----------------*/
+/* Titre de la page */
+h2.container-title {
+    margin: 20px 0 0 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    color: var(--color-light-blue);
+}
+
+h2.container-title.reservationpage {
+    width: 100%;
+    margin: 20px 0 0 -10px;
+}
+
+@media screen and (min-width: 992px) {
+    h2.container-title.reservationpage {
+        width: 80%;
+    }
+}
+
+h2.container-title.other {
+    margin-bottom: 10px;
+}
+
+h2.container-title > span {
+    color: var(--color-dark-grey);
+}
+
+/* Bloc qui contient les salles */
+div.row.content.roomdashboard {
+    margin: 20px 0 0 0;
+}
+
+/* Boutons */
+.button-style {
+    border-color: var(--color-blue) !important;
+    font-family: "Outfit", sans-serif !important;
+    font-weight: 500 !important;
+    color: var(--color-light-white) !important;
+    background-color: var(--color-light-blue) !important;
+    cursor: pointer;
+}
+
+.button-style:hover {
+    color: var(--color-white) !important;
+    background-color: var(--color-blue) !important;
+}
+
+.button-style:active {
+    color: var(--color-dark-white) !important;
+    background-color: var(--color-dark-blue) !important;
+}
+
+.button-red {
+    border-color: var(--color-red) !important;
+    background-color: var(--color-light-red) !important;
+}
+
+.button-red:hover {
+    background-color: var(--color-red) !important;
+}
+
+.button-red:active {
+    background-color: var(--color-dark-red) !important;
+}
+
+/* Formulaire */
+form.roomreservation {
+    margin: 15px 0;
+}
+
+@media screen and (min-width: 992px) {
+    form.roomreservation.reservationpage {
+        width: 80%;
+    }
+}
+
+form.roomreservation label {
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+form.roomreservation span.asteriskField {
+    color: var(--color-red);
+    border: none !important;
+    background: none !important;
+}
+
+div#div_id_groups {
+    margin-bottom: 0;
+}
+
+div#div_id_maxCapacity {
+    margin-bottom: 0;
+}
+
+div#div_id_password2 {
+    margin-bottom: 0;
+}
+
+small#hint_id_username,
+    small#hint_id_password1,
+    small#hint_id_password2 {
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+}
+
+label.asterisk-def {
+    font-size: 14px !important;
+}
+
+form.roomreservation > button {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Bloc de suppression, de validation et d'annulation */
+div.dashboard-style {
+    margin: 30px 0;
+}
+
+/*---------------- Page d'accueil ----------------*/
+/* Calendrier */
+div#calendar {
+    margin: 15px;
+}
+
+div#calendar > div:last-child {
+    margin-top: -8px;
+    background-color: var(--color-light-white);
+}
+
+/* Titre */
+div.fc-toolbar-chunk > h2.fc-toolbar-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
+    color: var(--color-light-blue);
+}
+
+/* Event */
+div.fc-event-main {
+    cursor: pointer;
+}
+
+div.fc-event-main p {
+    font-family: "Outfit", sans-serif;
+}
+
+div.fc-event-main p.event-details {
+    font-weight: 500;
+}
+
+div.fc-event-main p.event-labo {
+    font-weight: 400;
+}
+
+div.fc-event-main p.event-motif {
+    font-weight: 300;
+}
+
+/* Events en attente */
+a.event-pending-crestic {
+    border: 1px solid var(--color-crestic) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-crestic),
+        var(--color-crestic) 5px,
+        var(--color-dark-crestic) 5px,
+        var(--color-dark-crestic) 10px
+    );
+}
+
+a.event-pending-labi {
+    border: 1px solid var(--color-labi) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-labi),
+        var(--color-labi) 5px,
+        var(--color-dark-labi) 5px,
+        var(--color-dark-labi) 10px
+    );
+}
+
+a.event-pending-liciis {
+    border: 1px solid var(--color-liciis) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-liciis),
+        var(--color-liciis) 5px,
+        var(--color-dark-liciis) 5px,
+        var(--color-dark-liciis) 10px
+    );
+}
+
+a.event-pending-autre {
+    border: 1px solid var(--color-autre) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-autre),
+        var(--color-autre) 5px,
+        var(--color-dark-autre) 5px,
+        var(--color-dark-autre) 10px
+    );
+}
+
+/* Events validés */
+a.event-validated-crestic {
+    border: 1px solid var(--color-crestic) !important;
+    background-color: var(--color-crestic) !important;
+}
+
+a.event-validated-labi {
+    border: 1px solid var(--color-labi) !important;
+    background-color: var(--color-labi) !important;
+}
+
+a.event-validated-liciis {
+    border: 1px solid var(--color-liciis) !important;
+    background-color: var(--color-liciis) !important;
+}
+
+a.event-validated-autre {
+    border: 1px solid var(--color-autre) !important;
+    background-color: var(--color-autre) !important;
+}
+
+/* Autre event */
+a.event-holiday {
+    border: 1px solid rgba(2, 117, 216, 0.3) !important;
+    background-color: rgba(2, 117, 216, 0.3) !important;
+    pointer-events: none;
+}
+
+a.event-holiday p {
+    font-size: 15px;
+    color: var(--color-light-white) !important;
+    text-shadow: 0 0 3px var(--color-grey);
+}
+
+/* Modal de réservation et détails */
+div.modal-window h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+}
+
+div.modal-window span.modal-detail-title {
+    color: var(--color-light-blue);
+}
+
+div.modal-window div.flex-space-modal {
+    flex: 1;
+}
+
+div.modal-window span.modal-detail-badge {
+    border-color: var(--color-blue) !important;
+    background-color: var(--color-light-blue) !important;
+}
+
+div.modal-window p.modal-description {
+    margin-bottom: 10px !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+}
+
+div.modal-window div.modal-footer {
+    flex-wrap: nowrap;
+}
+
+div.eventDetailsButtons {
+    width: 100%;
+}
+
+ul.modal-list div.fw-bold {
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+}
+
+ul.modal-list div.ms-2.me-auto {
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+/* Erreur réservation */
+div.modal-window p.error-text {
+    margin-left: 12px;
+    text-align: justify;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+/* Boutons du menu */
+button.fc-today-button,
+    button.fc-timeGridWeek-button,
+    button.fc-timeGridDay-button,
+    button.fc-rooms-button,
+    button.fc-equipments-button,
+    button.fc-excel-button {
+    font-family: "Outfit", sans-serif !important;
+    font-weight: 400 !important;
+}
+
+button.fc-today-button,
+    button.fc-prev-button.fc-button.fc-button-primary,
+    button.fc-next-button.fc-button.fc-button-primary,
+    button.fc-timeGridWeek-button,
+    button.fc-timeGridDay-button,
+    button.fc-rooms-button,
+    button.fc-equipments-button,
+    button.fc-excel-button {
+    border-color: var(--color-blue) !important;
+    background-color: var(--color-light-blue) !important;
+}
+
+button.fc-today-button:hover,
+    button.fc-prev-button.fc-button.fc-button-primary:hover,
+    button.fc-next-button.fc-button.fc-button-primary:hover,
+    button.fc-timeGridWeek-button:hover,
+    button.fc-timeGridDay-button:hover,
+    button.fc-rooms-button:hover,
+    button.fc-equipments-button:hover,
+    button.fc-excel-button:hover {
+    background-color: var(--color-blue) !important;
+}
+
+button.fc-today-button:active,
+    button.fc-prev-button.fc-button.fc-button-primary:active,
+    button.fc-next-button.fc-button.fc-button-primary:active,
+    button.fc-timeGridWeek-button:active,
+    button.fc-timeGridDay-button:active,
+    button.fc-rooms-button:active,
+    button.fc-equipments-button:active,
+    button.fc-excel-button:active {
+    background-color: var(--color-dark-blue) !important;
+}
+
+/* Texte semaine */
+a.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner {
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+}
+
+/* Textes heures */
+div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame > div {
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* Textes jours */
+a.fc-col-header-cell-cushion {
+    margin: 4px 0;
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-light-blue) !important;
+}
+
+/*-------------- Page de connexion ---------------*/
+div.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.login-card div.card-body {
+    width: 60%;
+}
+
+/* Titre */
+div.login-card h3 {
+    margin-top: 30px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    color: var(--color-light-blue);
+}
+
+/* Champs */
+div.form-fields {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+div.form-fields > p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+div.form-fields > p > label {
+    margin: 10px 0 3px 0;
+}
+
+div.form-fields > p > input {
+    width: 100%;
+}
+
+div.form-fields > div {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+div.form-fields > div > p {
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+div.form-fields > div a {
+    font-size: 13px;
+    color: var(--color-light-blue);
+}
+
+div.form-fields > div a:hover {
+    text-decoration: underline var(--color-light-blue) !important;
+}
+
+/* Bouton de connexion */
+div.login-card button {
+    width: 100%;
+}
+
+/* Partie ou */
+div.form-other {
+    display: flex;
+    align-items: center;
+}
+
+div.form-other > p {
+    margin: 0 12px 5px 12px !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+div.form-other > hr {
+    width: 100%;
+    background-color: var(--color-dark-grey);
+}
+
+/* Connexion CAS */
+div.form-cas {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+div.form-cas p {
+    margin: 15px 0 6px 0 !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+div.form-cas > a {
+    width: 100%;
+    margin: 0 !important;
+}
+
+div.form-cas > a > img {
+    max-width: 100%;
+}
+
+/*-------- Page de réservation des salles --------*/
+/* Card de chaque salle */
+div.card.card-available-rooms {
+    margin-bottom: 20px !important;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--color-light-white) !important;
+}
+
+div.card.card-available-rooms > img {
+    min-height: 271px;
+    max-height: 271px;
+    border-radius: 15px 15px 0 0;
+    filter: brightness(0.65);
+}
+
+div.card.card-available-rooms h5 {
+    margin-bottom: 5px;
+    text-shadow: 0 0 5px var(--color-dark-grey);
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+}
+
+div.card.card-available-rooms p {
+    margin-bottom: 5px !important;
+    text-align: justify;
+    text-shadow: 0 0 5px var(--color-dark-grey);
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+div.card.card-available-rooms span {
+    padding: 5px;
+    border-color: var(--color-blue) !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: bold;
+    background-color: var(--color-light-blue) !important;
+}
+
+div.card.card-available-rooms a {
+    z-index: 999;
+}
+
+/* Card vide */
+div.empty-card {
+    border: 3px dashed var(--color-light-grey);
+    backdrop-filter: opacity(25%);
+    border-radius: 15px;
+    background-color: var(--color-light-white) !important;
+}
+
+div.empty-card-space {
+    min-height: 269px;
+}
+
+div.empty-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.empty-card-text > h5 {
+    font-family: "Lexend", sans-serif;
+    color: var(--color-grey);
+}
+
+div.empty-card-text > p {
+    width: 80%;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    color: var(--color-light-grey);
+}
+
+div.empty-card-button {
+    height: 38px;
+}
+
+/*---------- Page de gestion des salles ----------*/
+/* Bouton d'ajout d'une salle */
+a.container-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+a.container-button > i {
+    margin-right: 5px;
+}
+
+/* Tooltips de modification */
+div.edit-tooltip {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    --bs-tooltip-bg: var(--color-light-blue) !important;
+    --bs-tooltip-color: var(--color-light-white) !important;
+}
+
+div.edit-tooltip .tooltip-inner {
+    color: var(--color-light-white);
+    background-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-light-blue);
+}
+
+/* Tooltips de suppression */
+div.delete-tooltip {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    --bs-tooltip-bg: var(--color-light-red) !important;
+    --bs-tooltip-color: var(--color-light-white) !important;
+}
+
+div.delete-tooltip .tooltip-inner {
+    color: var(--color-light-white);
+    background-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-light-red);
+}
+
+/*---------------- Page de profil ----------------*/
+/* Titre des réservations */
+div.roomdashboard > h3 {
+    margin-bottom: 10px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    color: var(--color-light-blue);
+}
+
+/*------- Page de modification d'une salle -------*/
+form.roomreservation > div#div_id_image > div {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+/*--------- Page des détails d'une salle ---------*/
+div.details-card img {
+    height: 100%;
+}
+
+div.details-card h5 {
+    margin-bottom: 5px !important;
+    text-shadow: none !important;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+}
+
+div.details-card p {
+    margin-bottom: 5px !important;
+    text-shadow: none !important;
+    text-align: justify;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}

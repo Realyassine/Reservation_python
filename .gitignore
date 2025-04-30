@@ -1,0 +1,12 @@
+env/
+venv/
+.vim/
+__pycache__/
+.idea/
+
+*.env
+*.sqlite3
+/node_modules
+fullcalendar/calendarFiles/
+fullcalendar/excel/
+/reservations/

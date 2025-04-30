@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card text-center mt-5 mb-5 login-card" style="width: 30rem;">
+            <div class="card-body">
+                <h3 class="card-title">CONNEXION</h3>
+                <form action="" method="post">
+                    <div class="form-fields">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <!div>
+                            <!p>
+                                <!a href="{% url 'signup' %}">Créer un compte</a>
+                            <!/p>
+                        <!/div>
+                    </div>
+                    <button class="btn btn-success button-style mt-4 mb-4" type="submit">Se connecter</button>
+                    <div class="form-other">
+                        <hr>
+                        <p>ou</p>
+                        <hr>
+                    </div>
+                    <div class="form-cas">
+                        <div class="d-flex justify-content-start">
+                            <p>Identifiants de l'URCA :</p>
+                        </div>
+                        <a class="btn btn-success button-style mt-4 mb-4" href="{% url 'cas_ng_login' %}">
+                            <img src="{{ MEDIA_PREFIX }}img/logo-urca-bleu.png" alt="Logo de l'URCA">
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
