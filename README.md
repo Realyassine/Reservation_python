@@ -13,7 +13,6 @@
 - [📧 Configuration du service de mail](#configmail)
 - [🔧️ Lancement du projet](#launchproject)
 - [🧾 Licence](#licence)
-- [🔍 Projet original](#origproject)
 
 ## 📝 Description <a name="description"></a>
 <div style="text-align: justify;">
