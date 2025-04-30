@@ -17,7 +17,7 @@
 
 ## 📝 Description <a name="description"></a>
 <div style="text-align: justify;">
-Ce site web a été réalisé, pour le CReSTIC (un laboratoire de recherche) dans le cadre d'un stage de 2ème année de BUT Informatique de l'Université de Reims Champagne Ardenne.
+Ce site web a été réalisé, pour l'EMSI dans le cadre d'un projet Python- Django.
 Il permet de réserver des salles et équipements, mais aussi de les gérer, c'est-à-dire, en créer, en modifier et en supprimer. 
 </div>
 
