@@ -1,9 +1,8 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="static/img/roomquestic.png" alt="Logo CReSTIC" width="140"  height="auto" />
   <br/>
-  <h3><b>Site de réservation - CReSTIC</b></h3>
+  <h3><b>Site de réservation - EMSI</b></h3>
 </div>
 
 # 📗 Sommaire
@@ -14,15 +13,17 @@
 - [📧 Configuration du service de mail](#configmail)
 - [🔧️ Lancement du projet](#launchproject)
 - [🧾 Licence](#licence)
-- [🔍 Projet original](#origproject)
 
 ## 📝 Description <a name="description"></a>
 <div style="text-align: justify;">
-Ce site web a été réalisé, pour EMSI, il permet de réserver des salles et équipements, mais aussi de les gérer, c'est-à-dire, en créer, en modifier et en supprimer. 
+Ce site web a été réalisé, pour le CReSTIC (un laboratoire de recherche) dans le cadre d'un stage de 2ème année de BUT Informatique de l'Université de Reims Champagne Ardenne.
+Il permet de réserver des salles et équipements, mais aussi de les gérer, c'est-à-dire, en créer, en modifier et en supprimer. 
 </div>
 
 ## 👥 Auteur(s) <a name="auteur"></a>
-- 👤 Yassine - [Realyassine](https://github.com/Realyassine)
+- 👤 Nino SAUVAGEOT - [sauv0037](https://github.com/sauv0037)
+- 👤 Léo BERNARD - [bern0181](https://github.com/bern0181)
+- 👤 Tom SIKORA - [tom512000](https://github.com/tom512000)
 
 ## 🛠️ Versions <a name="versions"></a>
 - Python 3.9.x
