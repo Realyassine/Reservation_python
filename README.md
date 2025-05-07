@@ -18,14 +18,11 @@
 
 ## 📝 Description <a name="description"></a>
 <div style="text-align: justify;">
-Ce site web a été réalisé, pour le CReSTIC (un laboratoire de recherche) dans le cadre d'un stage de 2ème année de BUT Informatique de l'Université de Reims Champagne Ardenne.
-Il permet de réserver des salles et équipements, mais aussi de les gérer, c'est-à-dire, en créer, en modifier et en supprimer. 
+Ce site web a été réalisé, pour EMSI, il permet de réserver des salles et équipements, mais aussi de les gérer, c'est-à-dire, en créer, en modifier et en supprimer. 
 </div>
 
 ## 👥 Auteur(s) <a name="auteur"></a>
-- 👤 Nino SAUVAGEOT - [sauv0037](https://github.com/sauv0037)
-- 👤 Léo BERNARD - [bern0181](https://github.com/bern0181)
-- 👤 Tom SIKORA - [tom512000](https://github.com/tom512000)
+- 👤 Yassine - [Realyassine](https://github.com/Realyassine)
 
 ## 🛠️ Versions <a name="versions"></a>
 - Python 3.9.x
@@ -107,6 +104,3 @@ Accéder maintenant au projet à l'adresse http://localhost:8000.
 ## 🧾 Licence <a name="licence"></a>
 Ce projet est licencié sous la Licence Publique Générale Limitée GNU (LGPL) version 3 ou ultérieure. Voir le fichier [LICENSE](./LICENSE.txt) pour plus de détails.
 
----
-## 🔍 Projet original <a name="origproject"></a>
-Le projet a été initialement créé à partir de https://github.com/c3n7/hotel-reservation.
