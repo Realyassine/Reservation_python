@@ -76,6 +76,7 @@ INSTALLED_APPS = [
 
     # 3rd Party
     'crispy_forms',
+    'bootstrap4',
     'bootstrap_datepicker_plus',
 
     # Local
@@ -201,6 +202,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap4",)
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]

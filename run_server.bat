@@ -1,0 +1,3 @@
+@echo off
+echo Starting Django server with Python 3.10...
+py -3.10 manage.py runserver
