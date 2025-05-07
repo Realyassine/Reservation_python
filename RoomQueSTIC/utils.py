@@ -127,8 +127,14 @@ def send_reservation_confirmation_email_admin(booking_template):
     message = booking_template.greeting + '\n\n' + booking_template.confirmation_text
 
     sender = settings.DEFAULT_FROM_EMAIL
-    recipient_list = [booking_template.recipient] + settings.EMAIL_RECIPIENTS
-    send_mail(subject, message, sender, recipient_list, fail_silently=False)
+    recipient_list = settings.EMAIL_RECIPIENTS.copy() if hasattr(settings, 'EMAIL_RECIPIENTS') and settings.EMAIL_RECIPIENTS else []
+    
+    # Only add user email if it's valid
+    if booking_template.recipient and isinstance(booking_template.recipient, str) and '@' in booking_template.recipient:
+        recipient_list.append(booking_template.recipient)
+        
+    if recipient_list:
+        send_mail(subject, message, sender, recipient_list, fail_silently=True)
 
 
 def send_request_validation_email_admin(booking_template):
@@ -139,27 +145,37 @@ def send_request_validation_email_admin(booking_template):
     message = booking_template.notification_text
 
     sender = settings.DEFAULT_FROM_EMAIL
-    recipient_list = settings.EMAIL_RECIPIENTS
-    send_mail(subject, message, sender, recipient_list)
+    recipient_list = settings.EMAIL_RECIPIENTS.copy() if hasattr(settings, 'EMAIL_RECIPIENTS') and settings.EMAIL_RECIPIENTS else []
+    
+    if recipient_list:
+        send_mail(subject, message, sender, recipient_list, fail_silently=True)
 
 
 def send_reservation_acknowledgement_email_user(booking_template):
     """
     Envoie un mail qui atteste de la demande réservation d'un utilisateur
     """
+    # Skip sending if the recipient email is empty or invalid
+    if not booking_template.recipient or not isinstance(booking_template.recipient, str) or '@' not in booking_template.recipient:
+        return
+        
     subject = booking_template.acknowledgement_subject
     message = f'{booking_template.greeting}\n\n{booking_template.acknowledgement_text}'
     sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = [booking_template.recipient]
-    send_mail(subject, message, sender, recipient_list)
+    send_mail(subject, message, sender, recipient_list, fail_silently=True)
 
 
 def send_reservation_cancellation_email_user(booking_template):
     """
     Envoie un mail qui confirme l'annulation effectuée par l'utilisateur d'une réservation (en attente)
     """
+    # Skip sending if the recipient email is empty or invalid
+    if not booking_template.recipient or not isinstance(booking_template.recipient, str) or '@' not in booking_template.recipient:
+        return
+        
     subject = booking_template.cancellation_subject
     message = booking_template.cancellation_text
     sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = [booking_template.recipient]
-    send_mail(subject, message, sender, recipient_list)
+    send_mail(subject, message, sender, recipient_list, fail_silently=True)

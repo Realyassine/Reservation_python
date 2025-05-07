@@ -1,41 +1,51 @@
-/*
-    Projet : RoomQueSTIC
-    Description : Site de réservation - Python (Django)
-    Version : 1.0
-    Auteurs :
-        - Nino SAUVAGEOT
-        - Léo BERNARD
-        - Tom SIKORA
-*/
-
 /*------------------- Couleurs -------------------*/
 :root {
     /* Couleurs principales */
-    --color-light-blue: #0275d8;  /* Couleur 1  : Bleu clair  */
-    --color-blue: #036cc8;        /* Couleur 2  : Bleu        */
-    --color-dark-blue: #025dad;   /* Couleur 3  : Bleu foncé  */
-    --color-light-grey: #9e9e9e;  /* Couleur 4  : Gris clair  */
-    --color-grey: #515659;        /* Couleur 5  : Gris        */
-    --color-dark-grey: #373a3c;   /* Couleur 6  : Gris foncé  */
-    --color-light-white: #ffffff; /* Couleur 7  : Blanc clair */
-    --color-white: #ececec;       /* Couleur 8  : Blanc       */
-    --color-dark-white: #dddddd;  /* Couleur 9  : Blanc foncé */
-    --color-light-red: #ff4141;   /* Couleur 10 : Rouge clair */
-    --color-red: #ff1616;         /* Couleur 11 : Rouge       */
-    --color-dark-red: #bf1a1a;    /* Couleur 12 : Rouge foncé */
+    --color-light-blue: #2ca54d;
+    /* EMSI lighter green */
+    --color-blue: #2b8742;
+    /* EMSI main green */
+    --color-dark-blue: #206c33;
+    /* EMSI darker green */
+    --color-light-grey: #a0a0a0;
+    /* EMSI lighter grey */
+    --color-grey: #505050;
+    /* EMSI medium grey */
+    --color-dark-grey: #303030;
+    /* EMSI darker grey */
+    --color-light-white: #ffffff;
+    /* White */
+    --color-white: #f5f5f5;
+    /* Off-white */
+    --color-dark-white: #e5e5e5;
+    /* Light grey */
+    --color-light-red: #ff5252;
+    /* EMSI lighter red */
+    --color-red: #e53935;
+    /* EMSI red */
+    --color-dark-red: #c62828;
+    /* EMSI darker red */
 
     /* Dégradé */
-    --color-gradient: linear-gradient(0.25turn, #264085, #1D5895, #1079AA, #00A9CD);
+    --color-gradient: linear-gradient(0.25turn, #1a5627, #2b8742, #2ca54d, #4eba68);
 
     /* Couleurs des différents labos */
-    --color-crestic: #00A9CD;
-    --color-dark-crestic: #019cbf;
-    --color-labi: #6d90fd;
-    --color-dark-labi: #5e84ff;
-    --color-liciis: #aa00fd;
-    --color-dark-liciis: #a200f3;
-    --color-autre: #f4a352;
-    --color-dark-autre: #e19545;
+    --color-emsi: #4eba68;
+    /* EMSI light green */
+    --color-dark-emsi: #3da959;
+    /* EMSI darker light green */
+    --color-labi: #2ca54d;
+    /* EMSI alternative green */
+    --color-dark-labi: #258f3f;
+    /* EMSI darker alternative green */
+    --color-liciis: #8e44ad;
+    /* EMSI purple */
+    --color-dark-liciis: #7d3c98;
+    /* EMSI darker purple */
+    --color-autre: #f39c12;
+    /* EMSI orange */
+    --color-dark-autre: #e67e22;
+    /* EMSI darker orange */
 }
 
 /*------------------ CSS Global ------------------*/
@@ -91,7 +101,7 @@ nav.navbar {
 }
 
 /* Logo */
-a.navbar-brand > img {
+a.navbar-brand>img {
     height: 45px;
     margin-top: 2px;
 }
@@ -102,7 +112,7 @@ div.navbar-container {
     align-content: flex-start;
 }
 
-li.nav-item > span.nav-line {
+li.nav-item>span.nav-line {
     display: none;
 }
 
@@ -112,7 +122,7 @@ li.nav-item > span.nav-line {
         align-content: normal;
     }
 
-    li.nav-item > span.nav-line {
+    li.nav-item>span.nav-line {
         display: block;
     }
 }
@@ -125,7 +135,7 @@ span.nav-line {
     border: 1px solid var(--color-light-white);
 }
 
-ul.navbar-nav > li.nav-item > a {
+ul.navbar-nav>li.nav-item>a {
     margin: 0 3px;
     font-family: "Lexend", sans-serif;
     font-size: 15px;
@@ -134,11 +144,11 @@ ul.navbar-nav > li.nav-item > a {
     background: none !important;
 }
 
-ul.navbar-nav > li.nav-item > a:hover {
+ul.navbar-nav>li.nav-item>a:hover {
     color: var(--color-white);
 }
 
-ul.navbar-nav > li.nav-item > a:active {
+ul.navbar-nav>li.nav-item>a:active {
     color: var(--color-dark-white);
 }
 
@@ -148,25 +158,25 @@ ul.dropdown-menu.show {
     margin: -5px 0 0 -5px;
 }
 
-ul.dropdown-menu.show > li > a {
+ul.dropdown-menu.show>li>a {
     font-family: "Outfit", sans-serif;
     font-weight: 400;
     color: var(--color-grey);
 }
 
-ul.dropdown-menu.show > li > a:hover {
+ul.dropdown-menu.show>li>a:hover {
     background-color: var(--color-white) !important;
 }
 
-ul.dropdown-menu.show > li > a:active {
+ul.dropdown-menu.show>li>a:active {
     background-color: var(--color-dark-white) !important;
 }
 
-ul.navbar-nav > li.nav-item.dropdown > a {
+ul.navbar-nav>li.nav-item.dropdown>a {
     background: none !important;
 }
 
-ul.navbar-nav > li.nav-item > a.nav-link.show {
+ul.navbar-nav>li.nav-item>a.nav-link.show {
     color: var(--color-dark-white) !important;
 }
 
@@ -181,28 +191,28 @@ footer {
     background: var(--color-gradient);
 }
 
-footer > div > a.img-link {
+footer>div>a.img-link {
     display: block;
     width: 109px;
     height: 50px;
     margin-top: 10px;
 }
 
-footer > div > a.img-link > img {
+footer>div>a.img-link>img {
     height: 100%;
 }
 
-a.crestic-link {
+a.emsi-link {
     text-decoration: none;
     color: var(--color-light-white);
 }
 
-a.crestic-link:hover {
+a.emsi-link:hover {
     text-decoration: underline !important;
     color: var(--color-white);
 }
 
-a.crestic-link:active {
+a.emsi-link:active {
     color: var(--color-dark-white);
 }
 
@@ -214,11 +224,11 @@ footer p {
     color: var(--color-light-white);
 }
 
-footer > div > p:nth-child(2) {
+footer>div>p:nth-child(2) {
     margin-top: 20px !important;
 }
 
-footer > div > p:last-child {
+footer>div>p:last-child {
     font-weight: 600;
 }
 
@@ -246,7 +256,7 @@ h2.container-title.other {
     margin-bottom: 10px;
 }
 
-h2.container-title > span {
+h2.container-title>span {
     color: var(--color-dark-grey);
 }
 
@@ -324,8 +334,8 @@ div#div_id_password2 {
 }
 
 small#hint_id_username,
-    small#hint_id_password1,
-    small#hint_id_password2 {
+small#hint_id_password1,
+small#hint_id_password2 {
     font-family: "Outfit", sans-serif;
     font-weight: 300;
 }
@@ -334,7 +344,7 @@ label.asterisk-def {
     font-size: 14px !important;
 }
 
-form.roomreservation > button {
+form.roomreservation>button {
     width: 100%;
     margin-top: 5px;
 }
@@ -350,16 +360,16 @@ div#calendar {
     margin: 15px;
 }
 
-div#calendar > div:last-child {
+div#calendar>div:last-child {
     margin-top: -8px;
     background-color: var(--color-light-white);
 }
 
 /* Titre */
-div.fc-toolbar-chunk > h2.fc-toolbar-title {
+div.fc-toolbar-chunk>h2.fc-toolbar-title {
     font-family: "Lexend", sans-serif;
     font-weight: bold;
-    color: var(--color-light-blue);
+    color: white;
 }
 
 /* Event */
@@ -384,54 +394,46 @@ div.fc-event-main p.event-motif {
 }
 
 /* Events en attente */
-a.event-pending-crestic {
-    border: 1px solid var(--color-crestic) !important;
-    background-image: repeating-linear-gradient(
-        -45deg,
-        var(--color-crestic),
-        var(--color-crestic) 5px,
-        var(--color-dark-crestic) 5px,
-        var(--color-dark-crestic) 10px
-    );
+a.event-pending-emsi {
+    border: 1px solid var(--color-emsi) !important;
+    background-image: repeating-linear-gradient(-45deg,
+            var(--color-emsi),
+            var(--color-emsi) 5px,
+            var(--color-dark-emsi) 5px,
+            var(--color-dark-emsi) 10px);
 }
 
 a.event-pending-labi {
     border: 1px solid var(--color-labi) !important;
-    background-image: repeating-linear-gradient(
-        -45deg,
-        var(--color-labi),
-        var(--color-labi) 5px,
-        var(--color-dark-labi) 5px,
-        var(--color-dark-labi) 10px
-    );
+    background-image: repeating-linear-gradient(-45deg,
+            var(--color-labi),
+            var(--color-labi) 5px,
+            var(--color-dark-labi) 5px,
+            var(--color-dark-labi) 10px);
 }
 
 a.event-pending-liciis {
     border: 1px solid var(--color-liciis) !important;
-    background-image: repeating-linear-gradient(
-        -45deg,
-        var(--color-liciis),
-        var(--color-liciis) 5px,
-        var(--color-dark-liciis) 5px,
-        var(--color-dark-liciis) 10px
-    );
+    background-image: repeating-linear-gradient(-45deg,
+            var(--color-liciis),
+            var(--color-liciis) 5px,
+            var(--color-dark-liciis) 5px,
+            var(--color-dark-liciis) 10px);
 }
 
 a.event-pending-autre {
     border: 1px solid var(--color-autre) !important;
-    background-image: repeating-linear-gradient(
-        -45deg,
-        var(--color-autre),
-        var(--color-autre) 5px,
-        var(--color-dark-autre) 5px,
-        var(--color-dark-autre) 10px
-    );
+    background-image: repeating-linear-gradient(-45deg,
+            var(--color-autre),
+            var(--color-autre) 5px,
+            var(--color-dark-autre) 5px,
+            var(--color-dark-autre) 10px);
 }
 
 /* Events validés */
-a.event-validated-crestic {
-    border: 1px solid var(--color-crestic) !important;
-    background-color: var(--color-crestic) !important;
+a.event-validated-emsi {
+    border: 1px solid var(--color-emsi) !important;
+    background-color: var(--color-emsi) !important;
 }
 
 a.event-validated-labi {
@@ -518,46 +520,46 @@ div.modal-window p.error-text {
 
 /* Boutons du menu */
 button.fc-today-button,
-    button.fc-timeGridWeek-button,
-    button.fc-timeGridDay-button,
-    button.fc-rooms-button,
-    button.fc-equipments-button,
-    button.fc-excel-button {
+button.fc-timeGridWeek-button,
+button.fc-timeGridDay-button,
+button.fc-rooms-button,
+button.fc-equipments-button,
+button.fc-excel-button {
     font-family: "Outfit", sans-serif !important;
     font-weight: 400 !important;
 }
 
 button.fc-today-button,
-    button.fc-prev-button.fc-button.fc-button-primary,
-    button.fc-next-button.fc-button.fc-button-primary,
-    button.fc-timeGridWeek-button,
-    button.fc-timeGridDay-button,
-    button.fc-rooms-button,
-    button.fc-equipments-button,
-    button.fc-excel-button {
+button.fc-prev-button.fc-button.fc-button-primary,
+button.fc-next-button.fc-button.fc-button-primary,
+button.fc-timeGridWeek-button,
+button.fc-timeGridDay-button,
+button.fc-rooms-button,
+button.fc-equipments-button,
+button.fc-excel-button {
     border-color: var(--color-blue) !important;
     background-color: var(--color-light-blue) !important;
 }
 
 button.fc-today-button:hover,
-    button.fc-prev-button.fc-button.fc-button-primary:hover,
-    button.fc-next-button.fc-button.fc-button-primary:hover,
-    button.fc-timeGridWeek-button:hover,
-    button.fc-timeGridDay-button:hover,
-    button.fc-rooms-button:hover,
-    button.fc-equipments-button:hover,
-    button.fc-excel-button:hover {
+button.fc-prev-button.fc-button.fc-button-primary:hover,
+button.fc-next-button.fc-button.fc-button-primary:hover,
+button.fc-timeGridWeek-button:hover,
+button.fc-timeGridDay-button:hover,
+button.fc-rooms-button:hover,
+button.fc-equipments-button:hover,
+button.fc-excel-button:hover {
     background-color: var(--color-blue) !important;
 }
 
 button.fc-today-button:active,
-    button.fc-prev-button.fc-button.fc-button-primary:active,
-    button.fc-next-button.fc-button.fc-button-primary:active,
-    button.fc-timeGridWeek-button:active,
-    button.fc-timeGridDay-button:active,
-    button.fc-rooms-button:active,
-    button.fc-equipments-button:active,
-    button.fc-excel-button:active {
+button.fc-prev-button.fc-button.fc-button-primary:active,
+button.fc-next-button.fc-button.fc-button-primary:active,
+button.fc-timeGridWeek-button:active,
+button.fc-timeGridDay-button:active,
+button.fc-rooms-button:active,
+button.fc-equipments-button:active,
+button.fc-excel-button:active {
     background-color: var(--color-dark-blue) !important;
 }
 
@@ -576,7 +578,7 @@ div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
     align-items: center;
 }
 
-div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame > div {
+div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame>div {
     font-family: "Lexend", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -617,7 +619,7 @@ div.form-fields {
     margin-top: 30px;
 }
 
-div.form-fields > p {
+div.form-fields>p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -626,31 +628,31 @@ div.form-fields > p {
     font-weight: 400;
 }
 
-div.form-fields > p > label {
+div.form-fields>p>label {
     margin: 10px 0 3px 0;
 }
 
-div.form-fields > p > input {
+div.form-fields>p>input {
     width: 100%;
 }
 
-div.form-fields > div {
+div.form-fields>div {
     display: flex;
     justify-content: flex-end;
     width: 100%;
 }
 
-div.form-fields > div > p {
+div.form-fields>div>p {
     font-family: "Outfit", sans-serif;
     font-weight: 400;
 }
 
-div.form-fields > div a {
+div.form-fields>div a {
     font-size: 13px;
     color: var(--color-light-blue);
 }
 
-div.form-fields > div a:hover {
+div.form-fields>div a:hover {
     text-decoration: underline var(--color-light-blue) !important;
 }
 
@@ -665,13 +667,13 @@ div.form-other {
     align-items: center;
 }
 
-div.form-other > p {
+div.form-other>p {
     margin: 0 12px 5px 12px !important;
     font-family: "Outfit", sans-serif;
     font-weight: 400;
 }
 
-div.form-other > hr {
+div.form-other>hr {
     width: 100%;
     background-color: var(--color-dark-grey);
 }
@@ -688,12 +690,12 @@ div.form-cas p {
     font-weight: 400;
 }
 
-div.form-cas > a {
+div.form-cas>a {
     width: 100%;
     margin: 0 !important;
 }
 
-div.form-cas > a > img {
+div.form-cas>a>img {
     max-width: 100%;
 }
 
@@ -706,7 +708,7 @@ div.card.card-available-rooms {
     background-color: var(--color-light-white) !important;
 }
 
-div.card.card-available-rooms > img {
+div.card.card-available-rooms>img {
     min-height: 271px;
     max-height: 271px;
     border-radius: 15px 15px 0 0;
@@ -759,12 +761,12 @@ div.empty-card-text {
     align-items: center;
 }
 
-div.empty-card-text > h5 {
+div.empty-card-text>h5 {
     font-family: "Lexend", sans-serif;
     color: var(--color-grey);
 }
 
-div.empty-card-text > p {
+div.empty-card-text>p {
     width: 80%;
     text-align: center;
     font-family: "Outfit", sans-serif;
@@ -783,7 +785,7 @@ a.container-button {
     margin-top: 20px;
 }
 
-a.container-button > i {
+a.container-button>i {
     margin-right: 5px;
 }
 
@@ -847,7 +849,7 @@ div.delete-tooltip.bs-tooltip-end .tooltip-arrow::before {
 
 /*---------------- Page de profil ----------------*/
 /* Titre des réservations */
-div.roomdashboard > h3 {
+div.roomdashboard>h3 {
     margin-bottom: 10px;
     font-family: "Outfit", sans-serif;
     font-weight: 400;
@@ -855,7 +857,7 @@ div.roomdashboard > h3 {
 }
 
 /*------- Page de modification d'une salle -------*/
-form.roomreservation > div#div_id_image > div {
+form.roomreservation>div#div_id_image>div {
     padding: .375rem .75rem;
     font-size: 1rem;
     font-weight: 400;
