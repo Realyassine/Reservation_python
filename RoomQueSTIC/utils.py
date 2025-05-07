@@ -57,8 +57,11 @@ class MessageTemplate:
 
     @property
     def notification_text(self) -> str:
+        user_email = getattr(self._booking.user, 'email', '')
+        email_info = f" ({user_email})" if user_email and '@' in user_email else ""
+        
         message = f'Une nouvelle réservation a été faite par {self._booking.user.first_name}' \
-                  f' {self._booking.user.last_name} ({self._booking.user.email}).\n' \
+                  f' {self._booking.user.last_name}{email_info}.\n' \
                   f'{self._booking_type_name}: {self.booked_item}\n' \
                   f'Motif: {self._booking.motif}\n' \
                   f'Veuillez valider ou refuser cette demande de réservation sur {self._reservation_url}.'
@@ -86,7 +89,11 @@ class MessageTemplate:
 
     @property
     def recipient(self):
-        return self._booking.user.email
+        # Check if user has an email and it's not empty
+        email = getattr(self._booking.user, 'email', '')
+        if email and isinstance(email, str) and '@' in email:
+            return email
+        return None
 
 
 class RoomReservationTemplate(MessageTemplate):
