@@ -1,0 +1,8 @@
+BEGIN:VCALENDAR
+BEGIN:VEVENT
+SUMMARY:{"id": "1"\, "labo": "Autre"\, "nom": "PC"\, "status": "loaned"\, 
+ "motif": "cour"\, "user": "yassine"\, "holiday": "false"}
+DTSTART:20250509T154300
+DTEND:20250509T164300
+END:VEVENT
+END:VCALENDAR

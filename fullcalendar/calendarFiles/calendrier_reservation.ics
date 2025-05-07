@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+BEGIN:VEVENT
+SUMMARY:Salle : SC01 Nombre de personnes : 1/8 Motif : cour Laboratoire : 
+ Autre Statut : validated
+DTSTART:20250507T143000
+DTEND:20250507T164500
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Salle : SC02 Nombre de personnes : 3/3 Motif : cour Laboratoire : 
+ Autre Statut : validated
+DTSTART:20250507T165700
+DTEND:20250507T185700
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Salle : SC01 Nombre de personnes : 1/8 Motif : anything Laboratoir
+ e : Autre Statut : validated
+DTSTART:20250510T181500
+DTEND:20250510T211500
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Salle : SC02 Nombre de personnes : 1/3 Motif : cour Laboratoire : 
+ Autre Statut : validated
+DTSTART:20250516T181800
+DTEND:20250516T221800
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Salle : SC01 Nombre de personnes : 1/8 Motif : cour Laboratoire : 
+ Autre Statut : validated
+DTSTART:20250508T182200
+DTEND:20250508T222200
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Salle : SC01 Nombre de personnes : 1/8 Motif : cour Laboratoire : 
+ Autre Statut : validated
+DTSTART:20250509T182200
+DTEND:20250509T222200
+END:VEVENT
+END:VCALENDAR

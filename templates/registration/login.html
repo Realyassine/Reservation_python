@@ -2,36 +2,36 @@
 
 {% block content %}
 
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="card text-center mt-5 mb-5 login-card" style="width: 30rem;">
-            <div class="card-body">
-                <h3 class="card-title">CONNEXION</h3>
-                <form action="" method="post">
-                    <div class="form-fields">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <!div>
-                            <!p>
-                                <!a href="{% url 'signup' %}">Créer un compte</a>
-                            <!/p>
-                        <!/div>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="card text-center mt-5 mb-5 login-card" style="width: 30rem;">
+        <div class="card-body">
+            <h3 class="card-title">CONNEXION</h3>
+            <form action="" method="post">
+                <div class="form-fields">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="text-center">
+                        <p>
+                            <a href="{% url 'signup' %}">Créer un compte</a>
+                        </p>
                     </div>
-                    <button class="btn btn-success button-style mt-4 mb-4" type="submit">Se connecter</button>
-                    <div class="form-other">
-                        <hr>
-                        <p>ou</p>
-                        <hr>
+                </div>
+                <button class="btn btn-success button-style mt-4 mb-4" type="submit">Se connecter</button>
+                <div class="form-other">
+                    <hr>
+                    <p>ou</p>
+                    <hr>
+                </div>
+                <div class="form-cas">
+                    <div class="d-flex justify-content-start">
+                        <p>Etudiant Portail :</p>
                     </div>
-                    <div class="form-cas">
-                        <div class="d-flex justify-content-start">
-                            <p>Identifiants de l'URCA :</p>
-                        </div>
-                        <a class="btn btn-success button-style mt-4 mb-4" href="{% url 'cas_ng_login' %}">
-                            <img src="{{ MEDIA_PREFIX }}img/logo-urca-bleu.png" alt="Logo de l'URCA">
-                        </a>
-                    </div>
-                </form>
-            </div>
+                    <a class="btn btn-success button-style mt-4 mb-4" href="https://portail.emsi.ac.ma/auth">
+                        <img src="https://upload.wikimedia.org/wikipedia/fr/4/4a/Emsi_logo.jpg" alt="Logo EMSI">
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 {% endblock content %}
