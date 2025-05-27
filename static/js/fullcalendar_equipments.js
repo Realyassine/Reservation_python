@@ -17,9 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         // Création d'une instance du calendrier FullCalendar
         console.log('Creating calendar instance...');
+        console.log('Site prefix:', sitePrefix);
+        
         let calendarEquipment = new FullCalendar.Calendar(calendarEl, {
             // Basic configuration
             baseUrl: sitePrefix,
+            loading: function(isLoading) {
+                console.log('Calendar loading state:', isLoading);
+            },
             initialView: 'timeGridWeek',
             nowIndicator: true,
             locale: 'fr',
@@ -91,18 +96,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     color: '#f44336',
                     textColor: '#fff',
                     className: 'event-holiday',
+                    display: 'background',
                     success: function(content) {
                         console.log('ICS holiday loaded successfully!', content);
+                        if (content) {
+                            console.log('Sample holiday event:', content[0]);
+                        }
                     },
                     failure: function(error) {
                         console.error('Failed to load ICS holiday:', error);
                     }
                 },
                 {
-                    url: `${sitePrefix}/calendar/calendarBookedequipments.ics`,
+                    url: `${sitePrefix}/calendar/bookedequipments.ics`,
                     format: 'ics',
                     success: function(content) {
                         console.log('ICS booked equipment loaded successfully!', content);
+                        if (content) {
+                            console.log('Sample equipment booking:', content[0]);
+                        }
                     },
                     failure: function(error) {
                         console.error('Failed to load ICS booked equipment:', error);

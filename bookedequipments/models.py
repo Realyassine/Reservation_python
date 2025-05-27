@@ -15,9 +15,9 @@ class BookedEquipment(models.Model):
 
     LABORATORY_CHOICES = [  # Choix pour les groupes de laboratoire
         (None, 'Sélectionnez un laboratoire'),
-        ('LPRI', 'LPRI'),
-        ('SMARTI LAB', 'SMARTI LAB'),
-        ('LAMGIEP', 'LAMGIEP'),
+        ('CReSTIC', 'CReSTIC'),
+        ('Lab-i*', 'Lab-i*'),
+        ('LICIIS', 'LICIIS'),
         ('Autre', "Autre"),
     ]
 

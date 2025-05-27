@@ -113,25 +113,37 @@ def export_bookedroomsNOJSON_ics(request):
 
 def export_bookedequipments_ics(request):
     """Export equipment bookings as ICS file"""
-    # Ensure calendar directory exists
-    calendar_dir = ensure_calendar_files_exist()
-    ics_file_path = os.path.join(calendar_dir, 'calendarBookedequipments.ics')
-    
-    # Get the latest bookings and generate ICS file
-    from equipments.views import add_to_ics
-    ics_content = add_to_ics()
-    
-    if ics_content:
+    try:
+        # Ensure calendar directory exists
+        calendar_dir = ensure_calendar_files_exist()
+        ics_file_path = os.path.join(calendar_dir, 'calendarBookedequipments.ics')
+        
+        # Print debug information
+        print(f"Looking for equipment bookings file at absolute path: {ics_file_path}")
+        print(f"File exists: {os.path.exists(ics_file_path)}")
+        
+        # Get the latest bookings and generate ICS file
+        from equipments.views import add_to_ics
+        ics_content = add_to_ics()
+        
+        if not ics_content:
+            print("No ICS content generated")
+            return HttpResponse('No bookings found', status=404)
+        
         # Save the ICS content to file
         with open(ics_file_path, 'wb') as f:
             f.write(ics_content)
-        print(f"Successfully wrote ICS content to {ics_file_path}")
+        print(f"Successfully wrote {len(ics_content)} bytes of ICS content to {ics_file_path}")
         
+        # Set CORS headers to allow loading from any origin
         response = HttpResponse(ics_content, content_type='text/calendar')
         response['Content-Disposition'] = 'attachment; filename="calendarBookedequipments.ics"'
+        response['Access-Control-Allow-Origin'] = '*'
         return response
-    else:
-        return HttpResponse('No bookings found', status=404)
+        
+    except Exception as e:
+        print(f"Error generating equipment bookings ICS: {str(e)}")
+        return HttpResponse(f'Error generating ICS file: {str(e)}', status=500)
     
 
 

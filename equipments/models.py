@@ -10,8 +10,10 @@ class EquipmentCategory(models.Model):
     description = models.TextField(
         default="Entrez la description")  # Champ pour stocker la description de l'équipement avec une valeur par défaut
 
-    image = models.ImageField(upload_to='default-equipment_image',
-                              default=MEDIA_EQUIPMENT_IMAGE)  # Champ pour télécharger une image de l'équipement
+    image = models.ImageField(upload_to='default_equipment_image',
+                            default=MEDIA_EQUIPMENT_IMAGE)  # Champ pour télécharger une image de l'équipement
+
+    nbrEquipments = models.PositiveIntegerField(default=1)  # Nombre total d'équipements disponibles
 
     def __str__(self):
         return self.libEquipment

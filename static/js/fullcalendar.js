@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             equipments: {
                 text: 'Équipements',  // "Equipment" in French
                 click: function() {
-                    window.location.href = `${sitePrefix}/equipments/`;
+                    window.location.href = `${sitePrefix}/equipments/calendar/`;
                 }
             }
         },

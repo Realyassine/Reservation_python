@@ -11,4 +11,10 @@ SUMMARY:Salle : SC2 Nombre de personnes : 20/25 Motif : cours Laboratoire
 DTSTART:20250530T083000
 DTEND:20250530T093000
 END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Salle : SC5 Nombre de personnes : 1/30 Motif : cours Laboratoire :
+  Autre Statut : validated
+DTSTART:20250529T110000
+DTEND:20250529T113000
+END:VEVENT
 END:VCALENDAR

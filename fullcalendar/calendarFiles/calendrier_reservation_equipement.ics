@@ -1,7 +1,20 @@
 BEGIN:VCALENDAR
 BEGIN:VEVENT
-SUMMARY:Équipement : PC Motif : cour Laboratoire : LPRI Statut : loaned
-DTSTART:20250508T142400
-DTEND:20250508T152400
+SUMMARY:Équipement : Vidéoprojecteur Motif : cours Laboratoire : Autre S
+ tatut : loaned
+DTSTART:20250529T083000
+DTEND:20250529T094500
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Équipement : Vidéoprojecteur Motif : cours Laboratoire : Autre S
+ tatut : loaned
+DTSTART:20250530T084500
+DTEND:20250530T093000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Équipement : Ordinateur portable HP Motif : cours Laboratoire : A
+ utre Statut : loaned
+DTSTART:20250530T083000
+DTEND:20250530T090000
 END:VEVENT
 END:VCALENDAR

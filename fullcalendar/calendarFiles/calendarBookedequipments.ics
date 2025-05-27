@@ -1,8 +1,23 @@
 BEGIN:VCALENDAR
 BEGIN:VEVENT
-SUMMARY:{"id": "1"\, "labo": "LPRI"\, "nom": "PC"\, "status": "loaned"\, "
- motif": "cour"\, "user": "yassine"\, "holiday": "false"}
-DTSTART:20250508T142400
-DTEND:20250508T152400
+SUMMARY:{"id": "1"\, "labo": "Autre"\, "nom": "Vid\\u00e9oprojecteur"\, "s
+ tatus": "loaned"\, "motif": "cours"\, "user": "yassine"\, "holiday": "fals
+ e"}
+DTSTART:20250529T083000
+DTEND:20250529T094500
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": "2"\, "labo": "Autre"\, "nom": "Vid\\u00e9oprojecteur"\, "s
+ tatus": "loaned"\, "motif": "cours"\, "user": "yassine"\, "holiday": "fals
+ e"}
+DTSTART:20250530T084500
+DTEND:20250530T093000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": "3"\, "labo": "Autre"\, "nom": "Ordinateur portable HP"\, "
+ status": "loaned"\, "motif": "cours"\, "user": "yassine"\, "holiday": "fal
+ se"}
+DTSTART:20250530T083000
+DTEND:20250530T090000
 END:VEVENT
 END:VCALENDAR

@@ -13,4 +13,11 @@ SUMMARY:{"id": "2"\, "labo": "Autre"\, "nom": "SC2"\, "status": "validated
 DTSTART:20250530T083000
 DTEND:20250530T093000
 END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": "3"\, "labo": "Autre"\, "nom": "SC5"\, "status": "validated
+ "\, "motif": "cours"\, "nombre_personnes": "1"\, "max_capacity": "30"\, "u
+ ser": "yassine"\, "holiday": "false"}
+DTSTART:20250529T110000
+DTEND:20250529T113000
+END:VEVENT
 END:VCALENDAR

@@ -9,13 +9,13 @@
 <!-- FullCalendar CSS -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" rel="stylesheet" />
 <style>
-#calendar {
-    background-color: white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 8px;
-    min-height: 700px;
-}
+    #calendar {
+        background-color: white;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 8px;
+        min-height: 700px;
+    }
 </style>
 {% endblock link %}
 
@@ -106,7 +106,7 @@
         <div>
             Lien au format ICS : [LIEN ICS A COMPLETER]
         </div>-->
-    </div>
+</div>
 </div>
 {% endblock content %}
 
@@ -122,14 +122,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.5.1/main.global.min.js"></script>
 
 <!-- Initialize calendar -->
-<script src="{% static 'js/fullcalendar.js' %}?v={% now 'U' %}"></script>
+<script src="{% static 'js/fullcalendar_rooms.js' %}?v={% now 'U' %}"></script>
 
 <!-- Debug initialization -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, checking calendar initialization...');
-    const calendarEl = document.getElementById('calendar');
-    console.log('Calendar element:', calendarEl);
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM loaded, checking calendar initialization...');
+        const calendarEl = document.getElementById('calendar');
+        console.log('Calendar element:', calendarEl);
+    });
 </script>
 {% endblock script %}
