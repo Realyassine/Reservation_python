@@ -6,7 +6,6 @@ _pycache_/
 
 *.sqlite3
 /node_modules
-
 #fullcalendar/calendarFiles/
 #fullcalendar/excel/
 /reservations/

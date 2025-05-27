@@ -99,6 +99,23 @@ MIDDLEWARE = [
     'django_cas_ng.middleware.CASMiddleware',
 ]
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'RoomQueSTIC.context_processors.site_prefix',  # Add our custom context processor
+            ],
+        },
+    },
+]
+
 ROOT_URLCONF = 'RoomQueSTIC.urls'
 
 TEMPLATES = [
@@ -125,12 +142,8 @@ WSGI_APPLICATION = 'RoomQueSTIC.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reservation_py',
-        'USER': 'root',                  
-        'PASSWORD': '',                  
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -3,13 +3,22 @@ from .views import *  # Importe toutes les fonctions de vue depuis le module act
 
 urlpatterns = [
     # URL pour exporter les vacances au format iCalendar
-    path('holiday.ics',
+    path('calendarHoliday.ics',
          export_holiday_ics, name='holiday.ics'),
+    # Alternative URL path that might be more accessible
+    path('holiday.ics',
+         export_holiday_ics, name='holiday_alt.ics'),
     # URL pour exporter les réservations de salles au format iCalendar
-    path('bookedrooms.ics',
+    path('calendarBookedroom.ics',
          export_bookedrooms_ics, name='bookedrooms.ics'),
-    path('bookedequipments.ics',
+    # Alternative URL path for room bookings
+    path('bookedrooms.ics',
+         export_bookedrooms_ics, name='bookedrooms_alt.ics'),
+    path('calendarBookedequipments.ics',
          export_bookedequipments_ics, name='bookedequipments.ics'),
+    # Alternative URL path for equipment bookings
+    path('bookedequipments.ics',
+         export_bookedequipments_ics, name='bookedequipments_alt.ics'),
     # URL pour exporter les données vers Excel
     path('excelRoom',
          export_to_excel_room, name='excelRoom'),

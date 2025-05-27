@@ -1,20 +1,14 @@
 BEGIN:VCALENDAR
 BEGIN:VEVENT
-SUMMARY:Salle : SC01 Nombre de personnes : 1/26 Motif : anything Laboratoi
- re : Autre Statut : validated
-DTSTART:20250507T215800
-DTEND:20250507T225800
+SUMMARY:Salle : SC1 Nombre de personnes : 15/30 Motif : cours Laboratoire 
+ : Autre Statut : validated
+DTSTART:20250529T083000
+DTEND:20250529T101500
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Salle : SC01 Nombre de personnes : 10/26 Motif : anything Laborato
- ire : Autre Statut : validated
-DTSTART:20250509T120100
-DTEND:20250509T160100
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Salle : SC01 Nombre de personnes : 1/26 Motif : anything Laboratoi
- re : Autre Statut : validated
-DTSTART:20250508T120200
-DTEND:20250508T150100
+SUMMARY:Salle : SC2 Nombre de personnes : 20/25 Motif : cours Laboratoire 
+ : Autre Statut : validated
+DTSTART:20250530T083000
+DTEND:20250530T093000
 END:VEVENT
 END:VCALENDAR

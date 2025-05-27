@@ -13,46 +13,81 @@ def admin_required(user):
     return user.is_superuser or user.isSecretary
 
 
-def export_holiday_ics(request):
-    # Chemin absolu vers le fichier .ics existant
-    current_directory = os.path.dirname(__file__)
-    ics_file_path = os.path.join(current_directory, 'calendarFiles/calendarHoliday.ics')
+def ensure_calendar_files_exist():
+    """Ensure calendar files directory exists and creates it if not"""
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    calendar_dir = os.path.join(base_dir, 'fullcalendar', 'calendarFiles')
+    
+    # Create directory if it doesn't exist
+    if not os.path.exists(calendar_dir):
+        os.makedirs(calendar_dir)
+        print(f"Created calendar directory: {calendar_dir}")
+    
+    return calendar_dir
 
+def export_holiday_ics(request):
+    # Use an absolute path that's guaranteed to work
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ics_file_path = os.path.join(base_dir, 'fullcalendar', 'calendarFiles', 'calendarHoliday.ics')
+    
+    # Print debug information
+    print(f"Looking for holiday file at absolute path: {ics_file_path}")
+    print(f"File exists: {os.path.exists(ics_file_path)}")
+    
+    # Check if directory exists first
+    calendar_dir = os.path.join(base_dir, 'fullcalendar', 'calendarFiles')
+    print(f"Calendar directory exists: {os.path.exists(calendar_dir)}")
+    if os.path.exists(calendar_dir):
+        print(f"Files in directory: {os.listdir(calendar_dir)}")
+    
     # Vérifie si le fichier existe
     if os.path.exists(ics_file_path):
         # Lit le contenu du fichier .ics
         with open(ics_file_path, 'rb') as f:
             ics_content = f.read()
+            print(f"Successfully read {len(ics_content)} bytes from holiday ICS file")
 
         # Renvoie le contenu .ics en réponse à la requête
         response = HttpResponse(ics_content, content_type='text/calendar')
         response['Content-Disposition'] = 'attachment; filename="calendarHoliday.ics"'
-
+        
         return response
     else:
         # Génère une réponse 404 si le fichier n'existe pas
-        return HttpResponse('Fichier .ics non trouvé', status=404)
+        error_msg = f'Fichier .ics non trouvé: {ics_file_path}'
+        print(f"ERROR: {error_msg}")
+        return HttpResponse(error_msg, status=404)
 
 
 def export_bookedrooms_ics(request):
-    # Chemin absolu vers le fichier .ics existant
-    current_directory = os.path.dirname(__file__)
-    ics_file_path = os.path.join(current_directory, 'calendarFiles/calendarBookedroom.ics')
-
+    # Use an absolute path that's guaranteed to work
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ics_file_path = os.path.join(base_dir, 'fullcalendar', 'calendarFiles', 'calendarBookedroom.ics')
+    
+    # Print debug information
+    print(f"Looking for booked rooms file at absolute path: {ics_file_path}")
+    print(f"File exists: {os.path.exists(ics_file_path)}")
+    
     # Vérifie si le fichier existe
     if os.path.exists(ics_file_path):
         # Lit le contenu du fichier .ics
         with open(ics_file_path, 'rb') as f:
             ics_content = f.read()
+            print(f"Successfully read {len(ics_content)} bytes from booked rooms ICS file")
 
         # Renvoie le contenu .ics en réponse à la requête
         response = HttpResponse(ics_content, content_type='text/calendar')
         response['Content-Disposition'] = 'attachment; filename="calendarBookedroom.ics"'
-
+        
         return response
     else:
         # Génère une réponse 404 si le fichier n'existe pas
-        return HttpResponse('Fichier .ics non trouvé', status=404)
+        error_msg = f'Fichier .ics non trouvé: {ics_file_path}'
+        print(f"ERROR: {error_msg}")
+        return HttpResponse(error_msg, status=404)
 
 
 def export_bookedroomsNOJSON_ics(request):
@@ -77,24 +112,28 @@ def export_bookedroomsNOJSON_ics(request):
 
 
 def export_bookedequipments_ics(request):
-    # Chemin absolu vers le fichier .ics existant
-    current_directory = os.path.dirname(__file__)
-    ics_file_path = os.path.join(current_directory, 'calendarFiles/calendarBookedequipments.ics')
-
-    # Vérifie si le fichier existe
-    if os.path.exists(ics_file_path):
-        # Lit le contenu du fichier .ics
-        with open(ics_file_path, 'rb') as f:
-            ics_content = f.read()
-
-        # Renvoie le contenu .ics en réponse à la requête
+    """Export equipment bookings as ICS file"""
+    # Ensure calendar directory exists
+    calendar_dir = ensure_calendar_files_exist()
+    ics_file_path = os.path.join(calendar_dir, 'calendarBookedequipments.ics')
+    
+    # Get the latest bookings and generate ICS file
+    from equipments.views import add_to_ics
+    ics_content = add_to_ics()
+    
+    if ics_content:
+        # Save the ICS content to file
+        with open(ics_file_path, 'wb') as f:
+            f.write(ics_content)
+        print(f"Successfully wrote ICS content to {ics_file_path}")
+        
         response = HttpResponse(ics_content, content_type='text/calendar')
         response['Content-Disposition'] = 'attachment; filename="calendarBookedequipments.ics"'
-
         return response
     else:
-        # Génère une réponse 404 si le fichier n'existe pas
-        return HttpResponse('Fichier .ics non trouvé', status=404)
+        return HttpResponse('No bookings found', status=404)
+    
+
 
 def export_bookedequipmentsNOJSON_ics(request):
     # Chemin absolu vers le fichier .ics existant

@@ -1,23 +1,16 @@
 BEGIN:VCALENDAR
 BEGIN:VEVENT
-SUMMARY:{"id": "9"\, "labo": "Autre"\, "nom": "SC01"\, "status": "validate
- d"\, "motif": "anything"\, "nombre_personnes": "1"\, "max_capacity": "26"\
- , "user": "yassine"\, "holiday": "false"}
-DTSTART:20250507T215800
-DTEND:20250507T225800
+SUMMARY:{"id": "1"\, "labo": "Autre"\, "nom": "SC1"\, "status": "validated
+ "\, "motif": "cours"\, "nombre_personnes": "15"\, "max_capacity": "30"\, "
+ user": "yassine"\, "holiday": "false"}
+DTSTART:20250529T083000
+DTEND:20250529T101500
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:{"id": "10"\, "labo": "Autre"\, "nom": "SC01"\, "status": "validat
- ed"\, "motif": "anything"\, "nombre_personnes": "10"\, "max_capacity": "26
- "\, "user": "yassine"\, "holiday": "false"}
-DTSTART:20250509T120100
-DTEND:20250509T160100
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:{"id": "11"\, "labo": "Autre"\, "nom": "SC01"\, "status": "validat
- ed"\, "motif": "anything"\, "nombre_personnes": "1"\, "max_capacity": "26"
- \, "user": "yassine"\, "holiday": "false"}
-DTSTART:20250508T120200
-DTEND:20250508T150100
+SUMMARY:{"id": "2"\, "labo": "Autre"\, "nom": "SC2"\, "status": "validated
+ "\, "motif": "cours"\, "nombre_personnes": "20"\, "max_capacity": "25"\, "
+ user": "yassine"\, "holiday": "false"}
+DTSTART:20250530T083000
+DTEND:20250530T093000
 END:VEVENT
 END:VCALENDAR

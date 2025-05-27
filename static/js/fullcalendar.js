@@ -1,7 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtention de l'élément HTML représentant le calendrier
+    console.log('Starting calendar initialization...');
+    
+    // Get calendar element
     let calendarEl = document.getElementById('calendar');
-    let sitePrefix = '/reservations'
+    if (!calendarEl) {
+        console.error('Calendar element not found');
+        return;
+    }
+    console.log('Calendar element found');
+    
+    // Get site prefix from Django
+    let prefixMeta = document.querySelector('meta[name="site-prefix"]');
+    let sitePrefix = prefixMeta ? prefixMeta.getAttribute('content') : '';
+    console.log('Using site prefix:', sitePrefix);
+    
+    if (!sitePrefix) {
+        console.warn('No site prefix found, defaulting to empty string');
+    }
 
     // Création d'une instance du calendrier FullCalendar
     let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -89,9 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable: true, // Activation de la sélection de créneaux horaires
         // Textes des boutons de navigation du calendrier
         buttonText: {
-            today: 'Aujourd\'hui',
-            timeGridWeek: 'Semaine',
-            timeGridDay: 'Jour'
+            today: 'Aujourd\'hui',  // "Today" in French
+            timeGridWeek: 'Semaine',  // "Week" in French
+            timeGridDay: 'Jour'  // "Day" in French
         },
         headerToolbar: {
             left: 'prev today rooms,equipments', // Boutons de navigation à gauche
@@ -100,13 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         customButtons: {
             rooms: {
-                text: 'Salles'
+                text: 'Salles'  // "Rooms" in French
             },
             equipments: {
-                text: 'Équipements',
+                text: 'Équipements',  // "Equipment" in French
                 click: function() {
-                    window.location.href = `${sitePrefix}/equipments/calendar`;
-		    // window.location.href = "{% url 'home_equipment' %}";
+                    window.location.href = `${sitePrefix}/equipments/`;
                 }
             }
         },
@@ -133,23 +147,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Sources des événements pour le calendrier
         eventSources: [
             {
-                url: '/reservations/calendar/holiday.ics', // URL du fichier iCalendar pour les jours fériés
+                url: `${sitePrefix}/calendar/holiday.ics`, // URL alternative pour les jours fériés
                 format: 'ics', // Format du fichier iCalendar
-                success: function() {
-                    console.log('ICS holiday loaded!'); // Message de réussite du chargement des jours fériés
+                color: '#f44336', // Red color for holidays
+                textColor: '#fff', // White text
+                className: 'event-holiday', // Custom class
+                success: function(content) {
+                    console.log('ICS holiday loaded successfully!');
+                    console.log('Holiday events count:', content ? content.length : 0);
                 },
-                failure: function() {
-                    console.error('Failed to load ICS holiday.'); // Message d'erreur en cas d'échec du chargement des jours fériés
+                failure: function(error) {
+                    console.error('Failed to load ICS holiday.', error);
                 }
             },
             {
-                url: '/reservations/calendar/bookedrooms.ics', // URL du fichier iCalendar pour les réservations
+                url: `${sitePrefix}/calendar/bookedrooms.ics`, // URL alternative pour les réservations
                 format: 'ics', // Format du fichier iCalendar
-                success: function() {
-                    console.log('ICS booked loaded!'); // Message de réussite du chargement des réservations
+                success: function(content) {
+                    console.log('ICS booked rooms loaded successfully!');
+                    console.log('Room booking events count:', content ? content.length : 0);
                 },
-                failure: function() {
-                    console.error('Failed to load ICS booked.'); // Message d'erreur en cas d'échec du chargement des réservations
+                failure: function(error) {
+                    console.error('Failed to load ICS booked.', error);
                 }
             }
         ],

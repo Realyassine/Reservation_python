@@ -4,95 +4,132 @@
 {% load static %}
 
 {% block link %}
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" rel="stylesheet" />
+<!-- Add site prefix for calendar URLs -->
+<meta name="site-prefix" content="{{ request_prefix }}">
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" rel="stylesheet" />
+<style>
+#calendar {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    min-height: 700px;
+}
+</style>
 {% endblock link %}
 
 {% block content %}
-    <button type="button" class="d-none modalAdd" data-bs-toggle="modal" data-bs-target="#modalAdd"></button>
-    <div class="modal fade modal-window" id="modalAdd" tabindex="-1" aria-labelledby="modalAdd" aria-hidden="true">
-        <div class="modal-dialog">
-            <form class="modal-content roomreservation" id="eventForm" method="post" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Réserver une salle</h1>
-                </div>
-                <div class="modal-body">
-                    {% csrf_token %}
-                    {{ form.media }}
-                    {{ form.room_category | as_crispy_field }}
-                    {{ form.peopleAmount | as_crispy_field }}
-                    {{ form.date | as_crispy_field }}
-                    {{ form.startTime | as_crispy_field }}
-                    {{ form.endTime | as_crispy_field }}
-                    {{ form.motif | as_crispy_field }}
-                    {{ form.groups | as_crispy_field }}
+<button type="button" class="d-none modalAdd" data-bs-toggle="modal" data-bs-target="#modalAdd"></button>
+<div class="modal fade modal-window" id="modalAdd" tabindex="-1" aria-labelledby="modalAdd" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content roomreservation" id="eventForm" method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Réserver une salle</h1>
+            </div>
+            <div class="modal-body">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.room_category | as_crispy_field }}
+                {{ form.peopleAmount | as_crispy_field }}
+                {{ form.date | as_crispy_field }}
+                {{ form.startTime | as_crispy_field }}
+                {{ form.endTime | as_crispy_field }}
+                {{ form.motif | as_crispy_field }}
+                {{ form.groups | as_crispy_field }}
 
-                    {% if form.errors %}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-                            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                            </symbol>
-                        </svg>
-                        <div id="error-form" class="alert alert-danger d-flex align-items-center m-0" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"></use></svg>
-                            <div>
-                                {% for field_errors in form.errors.values %}
-                                    {% for error in field_errors %}
-                                        <p class="error-text">{{ error }}</p>
-                                    {% endfor %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endif %}
+                {% if form.errors %}
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                        </path>
+                    </symbol>
+                </svg>
+                <div id="error-form" class="alert alert-danger d-flex align-items-center m-0" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill"></use>
+                    </svg>
+                    <div>
+                        {% for field_errors in form.errors.values %}
+                        {% for error in field_errors %}
+                        <p class="error-text">{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" id="btnCloseAdd" class="btn btn-danger button-style button-red" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-success button-style">Valider</button>
-                </div>
-            </form>
-        </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCloseAdd" class="btn btn-danger button-style button-red"
+                    data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-success button-style">Valider</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <button type="button" class="d-none modalDetails" data-bs-toggle="modal" data-bs-target="#modalDetails"></button>
-    <div class="modal fade modal-window" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="eventTitle"></h1>
-                </div>
-                <div id="eventDescription" class="modal-body"></div>
-                <div class="modal-footer">
-                    {% if user.isSecretary or user.is_superuser %}
-                        <div class="eventDetailsButtons"></div>
-                    {% endif %}
-                    <button type="button" class="btn btn-danger button-style button-red" data-bs-dismiss="modal">Fermer</button>
-                </div>
+<button type="button" class="d-none modalDetails" data-bs-toggle="modal" data-bs-target="#modalDetails"></button>
+<div class="modal fade modal-window" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="eventTitle"></h1>
+            </div>
+            <div id="eventDescription" class="modal-body"></div>
+            <div class="modal-footer">
+                {% if user.isSecretary or user.is_superuser %}
+                <div class="eventDetailsButtons"></div>
+                {% endif %}
+                <button type="button" class="btn btn-danger button-style button-red"
+                    data-bs-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div id='calendar'></div>
+<div id='calendar'></div>
 
-    <div class="d-flex justify-content-center align-items-center" style="width: 100%;">
-        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-            <symbol id="info-fill" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
-            </symbol>
+<div class="d-flex justify-content-center align-items-center" style="width: 100%;">
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <symbol id="info-fill" viewBox="0 0 16 16">
+            <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+            </path>
+        </symbol>
+    </svg>
+
+    <!--<div class="alert alert-primary d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill"></use>
         </svg>
-
-        <div class="alert alert-primary d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
-            <div>
-                Lien au format ICS : [LIEN ICS A COMPLETER]
-            </div>
-        </div>
+        <div>
+            Lien au format ICS : [LIEN ICS A COMPLETER]
+        </div>-->
     </div>
+</div>
 {% endblock content %}
 
 {% block script %}
-    <!-- Import FullCalendar -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.5.1/main.global.min.js"></script>
-    <script src="{% static "js/fullcalendar.js" %}"></script>
+<!-- MomentJS first for date handling -->
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/fr.js"></script>
+
+<!-- FullCalendar Core and Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/locales/fr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.5.1/main.global.min.js"></script>
+
+<!-- Initialize calendar -->
+<script src="{% static 'js/fullcalendar.js' %}?v={% now 'U' %}"></script>
+
+<!-- Debug initialization -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, checking calendar initialization...');
+    const calendarEl = document.getElementById('calendar');
+    console.log('Calendar element:', calendarEl);
+});
+</script>
 {% endblock script %}
